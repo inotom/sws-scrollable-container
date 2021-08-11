@@ -1,0 +1,7 @@
+src/
+.browserslistrc
+.editorconfig
+.eslintrc.json
+.node-version
+.prettierrc
+.local.vimrc

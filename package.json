@@ -1,0 +1,65 @@
+{
+  "name": "@inotom/sws-scrollable-container",
+  "version": "1.0.0",
+  "description": "A web Components to show scrollable hint.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/sws-scrollable-container.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "author": "inotom (https://www.serendip.ws/)",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development rollup -c -w",
+    "prebuild": "rimraf dist && npm run clean && npm run types",
+    "build": "NODE_ENV=production rollup -c",
+    "clean": "rimraf '**/.DS_Store'",
+    "prepublishOnly": "npm run build",
+    "release": "npm publish",
+    "types": "tsc --emitDeclarationOnly",
+    "lint": "eslint --ext .ts src",
+    "prettier": "prettier --write src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inotom/sws-scrollable-container.git"
+  },
+  "bugs": {
+    "url": "https://github.com/inotom/sws-scrollable-container/issues"
+  },
+  "homepage": "https://github.com/inotom/sws-scrollable-container#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "0.21.3",
+    "@rollup/plugin-commonjs": "20.0.0",
+    "@rollup/plugin-node-resolve": "13.0.4",
+    "@types/node": "16.4.13",
+    "@typescript-eslint/eslint-plugin": "4.29.1",
+    "@typescript-eslint/parser": "4.29.1",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "lodash.camelcase": "4.3.0",
+    "lodash.upperfirst": "4.3.1",
+    "prettier": "2.3.2",
+    "rimraf": "3.0.2",
+    "rollup": "2.56.2",
+    "rollup-plugin-html2": "3.0.1",
+    "rollup-plugin-livereload": "2.0.5",
+    "rollup-plugin-serve": "1.1.0",
+    "rollup-plugin-terser": "7.0.2",
+    "rollup-plugin-typescript2": "0.30.0",
+    "typescript": "4.3.5",
+    "typescript-lit-html-plugin": "0.9.0"
+  },
+  "dependencies": {
+    "lit-element": "2.5.1",
+    "throttle-debounce": "3.0.1",
+    "tslib": "2.1.0"
+  }
+}

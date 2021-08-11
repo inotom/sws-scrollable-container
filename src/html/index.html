@@ -1,0 +1,595 @@
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://polyfill.io/v3/polyfill.min.js"></script>
+<title>@inotom/sws-scrollable-container demo</title>
+<style>
+body {
+  font-size: .75rem;
+}
+hr {
+  margin: 6.25rem auto;
+}
+
+.l-container {
+  width: 90%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.table-container--dark {
+  color: #fff;
+  background-color: #333;
+}
+.table-container--dark sws-scrollable-container {
+  --sws-scrollable-container-notification-color: #333;
+  --sws-scrollable-container-notification-background-color: rgba(255, 255, 255, 0.8);
+}
+.table-container--small sws-scrollable-container {
+  --sws-scrollable-container-notification-size: 3.75rem;
+  --sws-scrollable-container-icon-scale: 1;
+  --sws-scrollable-container-message-font-size: .625rem;
+}
+.table-container--large sws-scrollable-container {
+  --sws-scrollable-container-notification-size: 9.375rem;
+  --sws-scrollable-container-notification-border-radius: 1.25rem;
+  --sws-scrollable-container-icon-scale: 3;
+  --sws-scrollable-container-message-font-size: 1.25rem;
+}
+.table-container--fixed sws-scrollable-container {
+  --sws-scrollable-container-shadow-from-x: 10rem;
+  --sws-scrollable-container-shadow-to-x: 7rem;
+}
+.table {
+  margin: 0 auto;
+}
+.table--small {
+  width: 300px;
+}
+.table--normal {
+  width: 960px;
+}
+.table--wide {
+  width: 2000px;
+}
+.table,
+.table td,
+.table th {
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+.table td,
+.table th {
+  padding: 1em;
+}
+.table th {
+  background-color: #fee;
+}
+.table--dark th {
+  background-color: #633;
+}
+.table--sticky,
+.table--sticky td,
+.table--sticky th {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table__head--start,
+.table__head--end {
+  box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+}
+.table__head--start {
+  left: 0;
+  width: 10rem;
+}
+.table__head--end {
+  right: 0;
+  width: 7rem;
+}
+
+.vertical-scroll-container {
+  max-height: 200px;
+}
+.vertical-scroll-container p:first-of-type {
+  margin-top: 0;
+}
+.vertical-scroll-container p:last-of-type {
+  margin-bottom: 0;
+}
+
+.async-block {
+  max-height: 200px;
+}
+
+.tab {
+  display: flex;
+  margin: .5em 0;
+}
+.tab__item {
+  margin-right: .5em;
+  padding: 1em;
+  color: #fff;
+  background-color: #999;
+  text-decoration: none;
+}
+.tab__item[is-selected] {
+  background-color: #966;
+}
+
+.tab-block--loading,
+.tab-block {
+  height: 200px;
+}
+
+.tab-content {
+  max-height: 200px;
+}
+</style>
+</head>
+<body>
+
+  <div class="l-container">
+    <h1>@inotom/sws-scrollable-container demo</h1>
+
+    <h2>horizontal scroll</h2>
+
+    <sws-scrollable-container>
+      <table class="table table--normal">
+        <tbody>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </sws-scrollable-container>
+
+    <hr>
+
+    <h2>vertical scroll</h2>
+
+    <sws-scrollable-container is-vertical="true">
+      <div class="vertical-scroll-container">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </sws-scrollable-container>
+
+    <hr>
+
+    <h2>small enough</h2>
+
+    <sws-scrollable-container>
+      <table class="table table-small">
+        <tbody>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet,
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet,
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet,
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </sws-scrollable-container>
+
+    <hr>
+
+    <h2>custom label</h2>
+
+    <sws-scrollable-container label="横スクロールできます。">
+      <table class="table table--wide">
+        <tbody>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </sws-scrollable-container>
+
+    <hr>
+
+    <h2>hide notification (only shadow)</h2>
+
+    <sws-scrollable-container is-hide-notification="true">
+      <table class="table table--wide">
+        <tbody>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+          <tr>
+            <th>label</th>
+            <td>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </sws-scrollable-container>
+
+    <hr>
+
+    <h2>for dark theme</h2>
+
+    <div class="table-container--dark">
+      <sws-scrollable-container>
+        <table class="table table--wide table--dark">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <hr>
+
+    <h2>custom size</h2>
+
+    <div class="table-container--small">
+      <sws-scrollable-container>
+        <table class="table table--wide">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <div class="table-container--large">
+      <sws-scrollable-container>
+        <table class="table table--wide">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <hr>
+
+    <h2>fixed cell</h2>
+
+    <div class="table-container table-container--fixed">
+      <sws-scrollable-container>
+        <table class="table table--wide table--sticky">
+          <tbody>
+            <tr>
+              <th class="table__head--start">label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+              <th class="table__head--end">label</th>
+            </tr>
+            <tr>
+              <th class="table__head--start">label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+              <th class="table__head--end">label</th>
+            </tr>
+            <tr>
+              <th class="table__head--start">label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+              <th class="table__head--end">label</th>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <hr>
+
+    <div id="app">
+      <h2>async block scroll</h2>
+
+      <async-block></async-block>
+
+      <hr>
+
+      <h2>tab swich scroll box</h2>
+
+      <tab-switch></tab-switch>
+    </div>
+
+    <hr>
+
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script type="text/x-template" id="async-block-template">
+  <div class="async-block-container">
+    <sws-scrollable-container
+      is-vertical="true"
+      v-if="showScrollableContainer"
+    >
+      <div class="async-block">
+        <div
+          v-for="(item, index) in lines"
+          :key="index"
+          class="async-block__lines"
+        >
+          LINE{{ index }} - {{ item }}
+        </div>
+      </div>
+    </sws-scrollable-container>
+    <div>
+      <input type="button" value="Update" @click="updateLine">
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="tab-switch-template">
+  <div>
+    <div class="tab">
+      <a
+        class="tab__item"
+        href="#"
+        v-for="(item, index) in pages"
+        :key="item.id"
+        :is-selected="selectedIndex === index"
+        @click.prevent="selectTab(index)"
+      >
+        TAB{{ index }}
+      </a>
+    </div>
+    <div
+      class="tab-block--loading"
+      v-if="isLoading"
+    >
+      Loading...
+    </div>
+    <div
+      class="tab-block"
+      v-else
+    >
+      <sws-scrollable-container
+        is-vertical="true"
+      >
+        <div class="tab-content">
+          <div
+            v-for="(line, index) in lines"
+            :key="index"
+            class="tab-content__line"
+          >
+            {{ line }}
+          </div>
+        </div>
+      </sws-scrollable-container>
+    </div>
+  </div>
+</script>
+
+<script>
+Vue.config.ignoredElements = [
+  'sws-scrollable-container',
+];
+
+Vue.component('async-block', {
+  template: '#async-block-template',
+
+  data: function() {
+    return {
+      lines: [],
+      showScrollableContainer: true,
+    };
+  },
+
+  mounted: function() {
+    setTimeout(function() {
+      this.showScrollableContainer = false;
+
+      this.lines = [
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      ];
+
+      this.$nextTick(() => {
+        this.showScrollableContainer = true;
+      });
+    }.bind(this), 1000);
+  },
+
+  methods: {
+    updateLine:function() {
+      this.lines.push('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+
+      this.showScrollableContainer = false;
+
+      this.$nextTick(() => {
+        this.showScrollableContainer = true;
+      });
+    },
+  },
+});
+
+Vue.component('tab-switch', {
+  template: '#tab-switch-template',
+
+  data: function() {
+    return {
+      isLoading: false,
+      selectedIndex: 0,
+      pages: [
+        {
+          id: 0,
+          lines: [
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          ],
+        },
+        {
+          id: 1,
+          lines: [
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          ],
+        },
+      ],
+    };
+  },
+
+  computed: {
+    lines: function() {
+      return this.pages[this.selectedIndex].lines;
+    },
+  },
+
+  mounted: function() {
+    this.selectTab(0);
+  },
+
+  methods: {
+    selectTab: function(index) {
+      this.isLoading = true;
+      setTimeout(function() {
+        this.isLoading = false;
+        this.selectedIndex = index;
+      }.bind(this), 500);
+    },
+  },
+});
+
+new Vue({
+  el: '#app'
+});
+</script>
+</body>
+</html>
