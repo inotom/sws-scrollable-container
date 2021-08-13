@@ -273,10 +273,17 @@ class SwsScrollableContainer extends LitElement {
   private elShadowFrom: HTMLDivElement | null | undefined;
   private elShadowTo: HTMLDivElement | null | undefined;
   private handleResize;
+  private currentScreenWidth = window.innerWidth;
 
   constructor() {
     super();
-    this.handleResize = throttle(150, this._initialize.bind(this));
+    this.handleResize = throttle(150, () => {
+      if (this.currentScreenWidth === window.innerWidth) {
+        return;
+      }
+      this._initialize();
+      this.currentScreenWidth = window.innerWidth;
+    });
   }
 
   disconnectedCallback() {
