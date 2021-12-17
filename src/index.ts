@@ -355,14 +355,18 @@ class SwsScrollableContainer extends LitElement {
   }
 
   private _setShadow(): void {
-    this.elShadowFrom.style.setProperty(
-      '--sws-scrollable-container-shadow-from-scale',
-      this._getFromShadowScale()
-    );
-    this.elShadowTo.style.setProperty(
-      '--sws-scrollable-container-shadow-to-scale',
-      this._getToShadowScale()
-    );
+    if (this.elShadowFrom) {
+      this.elShadowFrom.style.setProperty(
+        '--sws-scrollable-container-shadow-from-scale',
+        `${this._getFromShadowScale()}`
+      );
+    }
+    if (this.elShadowTo) {
+      this.elShadowTo.style.setProperty(
+        '--sws-scrollable-container-shadow-to-scale',
+        `${this._getToShadowScale()}`
+      );
+    }
   }
 
   private _getFromShadowScale(): number {
