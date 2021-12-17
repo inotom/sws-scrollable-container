@@ -370,6 +370,9 @@ class SwsScrollableContainer extends LitElement {
   }
 
   private _getFromShadowScale(): number {
+    if (!this.elMain || !this.elShadowFrom || !this.elShadowTo) {
+      return 0;
+    }
     const size = this.isVertical ? this.elShadowFrom.clientHeight : this.elShadowFrom.clientWidth;
     const pos = this.isVertical ? this.elMain.scrollTop : this.elMain.scrollLeft;
     if (pos < size) {
@@ -379,6 +382,9 @@ class SwsScrollableContainer extends LitElement {
   }
 
   private _getToShadowScale(): number {
+    if (!this.elMain || !this.elShadowFrom || !this.elShadowTo) {
+      return 0;
+    }
     if (this.isVertical) {
       const size = this.elShadowTo.clientHeight;
       const pos = this.elMain.scrollTop + this.elMain.offsetHeight;
