@@ -124,6 +124,8 @@ class SwsScrollableContainer extends LitElement {
       box-sizing: border-box;
       position: absolute;
       background-repeat: no-repeat;
+      transition: transform 0.1s;
+      pointer-events: none;
     }
 
     .scrollable-container__shadow[is-horizontal] {
@@ -135,11 +137,10 @@ class SwsScrollableContainer extends LitElement {
     }
 
     .scrollable-container__shadow.from {
+      --sws-scrollable-container-shadow-from-scale: 0;
+
       top: var(--sws-scrollable-container-shadow-from-y);
       left: var(--sws-scrollable-container-shadow-from-x);
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.1s, transform 0.1s, visibility 0s linear 0.1s;
     }
 
     .scrollable-container__shadow.from[is-horizontal] {
@@ -147,7 +148,7 @@ class SwsScrollableContainer extends LitElement {
       height: 100%;
       background-image: radial-gradient(at left, rgba(0, 0, 0, 0.2), transparent 70%);
       background-position: left 50%;
-      transform: scaleX(0);
+      transform: scaleX(var(--sws-scrollable-container-shadow-from-scale));
       transform-origin: left 50%;
     }
 
@@ -156,38 +157,23 @@ class SwsScrollableContainer extends LitElement {
       height: var(--sws-scrollable-container-shadow-size);
       background-image: radial-gradient(at top, rgba(0, 0, 0, 0.2), transparent 70%);
       background-position: 50% top;
-      transform: scaleY(0);
+      transform: scaleY(var(--sws-scrollable-container-shadow-from-scale));
       transform-origin: 50% top;
-    }
-
-    .scrollable-container__shadow.from[is-active] {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 0.1s, transform 0.1s, visibility 0.1s linear 0s;
-    }
-
-    .scrollable-container__shadow.from[is-horizontal][is-active] {
-      transform: scaleX(1);
-    }
-
-    .scrollable-container__shadow.from[is-vertical][is-active] {
-      transform: scaleY(1);
     }
 
     .scrollable-container__shadow.to {
       right: var(--sws-scrollable-container-shadow-to-x);
       bottom: var(--sws-scrollable-container-shadow-to-y);
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.1s, transform 0.1s, visibility 0s linear 0.1s;
     }
 
     .scrollable-container__shadow.to[is-horizontal] {
+      --sws-scrollable-container-shadow-to-scale: 0;
+
       width: var(--sws-scrollable-container-shadow-size);
       height: 100%;
       background-image: radial-gradient(at right, rgba(0, 0, 0, 0.2), transparent 70%);
       background-position: right 50%;
-      transform: scaleX(0);
+      transform: scaleX(var(--sws-scrollable-container-shadow-to-scale));
       transform-origin: right 50%;
     }
 
@@ -196,22 +182,8 @@ class SwsScrollableContainer extends LitElement {
       height: var(--sws-scrollable-container-shadow-size);
       background-image: radial-gradient(at bottom, rgba(0, 0, 0, 0.2), transparent 70%);
       background-position: 50% bottom;
-      transform: scaleY(0);
+      transform: scaleY(var(--sws-scrollable-container-shadow-to-scale));
       transform-origin: 50% bottom;
-    }
-
-    .scrollable-container__shadow.to[is-active] {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 0.1s, transform 0.1s, visibility 0.1s linear 0s;
-    }
-
-    .scrollable-container__shadow.to[is-horizontal][is-active] {
-      transform: scaleX(1);
-    }
-
-    .scrollable-container__shadow.to[is-vertical][is-active] {
-      transform: scaleY(1);
     }
 
     @keyframes swipe-horizontal {
@@ -263,12 +235,6 @@ class SwsScrollableContainer extends LitElement {
 
   @property({ type: Boolean, attribute: false })
   notificationEnabled = false;
-
-  @property({ type: Boolean, attribute: false })
-  fromShadowEnabled = false;
-
-  @property({ type: Boolean, attribute: false })
-  toShadowEnabled = false;
 
   private elMain: HTMLDivElement | null | undefined;
   private elShadowFrom: HTMLDivElement | null | undefined;
@@ -326,13 +292,11 @@ class SwsScrollableContainer extends LitElement {
           class="scrollable-container__shadow from"
           ?is-vertical="${this.isVertical}"
           ?is-horizontal="${!this.isVertical}"
-          ?is-active="${this.fromShadowEnabled}"
         ></div>
         <div
           class="scrollable-container__shadow to"
           ?is-vertical="${this.isVertical}"
           ?is-horizontal="${!this.isVertical}"
-          ?is-active="${this.toShadowEnabled}"
         ></div>
       </div>
     `;
@@ -391,13 +355,14 @@ class SwsScrollableContainer extends LitElement {
   }
 
   private _setShadow(): void {
-    if (this.isScrollable) {
-      this.fromShadowEnabled = this._canScrollFrom();
-      this.toShadowEnabled = this._canScrollTo();
-    } else {
-      this.fromShadowEnabled = false;
-      this.toShadowEnabled = false;
-    }
+    this.elShadowFrom.style.setProperty(
+      '--sws-scrollable-container-shadow-from-scale',
+      this._getFromShadowScale()
+    );
+    this.elShadowTo.style.setProperty(
+      '--sws-scrollable-container-shadow-to-scale',
+      this._getToShadowScale()
+    );
   }
 
   private _getFromShadowScale(): number {

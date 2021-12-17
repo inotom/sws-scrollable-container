@@ -41,6 +41,9 @@ hr {
   --sws-scrollable-container-shadow-from-x: 10rem;
   --sws-scrollable-container-shadow-to-x: 7rem;
 }
+.table-container--large-shadow sws-scrollable-container {
+  --sws-scrollable-container-shadow-size: 3.125rem;
+}
 .table {
   margin: 0 auto;
 }
@@ -213,6 +216,37 @@ hr {
         </tbody>
       </table>
     </sws-scrollable-container>
+
+    <hr>
+
+    <h2>custom shadow size</h2>
+
+    <div class="table-container--large-shadow">
+      <sws-scrollable-container>
+        <table class="table table--wide">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
 
     <hr>
 
