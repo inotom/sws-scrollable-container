@@ -400,6 +400,33 @@ class SwsScrollableContainer extends LitElement {
     }
   }
 
+  private _getFromShadowScale(): number {
+    const size = this.isVertical ? this.elShadowFrom.clientHeight : this.elShadowFrom.clientWidth;
+    const pos = this.isVertical ? this.elMain.scrollTop : this.elMain.scrollLeft;
+    if (pos < size) {
+      return pos / size;
+    }
+    return 1;
+  }
+
+  private _getToShadowScale(): number {
+    if (this.isVertical) {
+      const size = this.elShadowTo.clientHeight;
+      const pos = this.elMain.scrollTop + this.elMain.offsetHeight;
+      if (pos > this.elMain.scrollHeight - size) {
+        return (this.elMain.scrollHeight - pos) / size;
+      }
+      return 1;
+    } else {
+      const size = this.elShadowTo.clientWidth;
+      const pos = this.elMain.scrollLeft + this.elMain.offsetWidth;
+      if (pos > this.elMain.scrollWidth - size) {
+        return (this.elMain.scrollWidth - pos) / size;
+      }
+      return 1;
+    }
+  }
+
   private _onScroll(e: MouseEvent): void {
     this._setShadow();
     this.notificationEnabled = false;
