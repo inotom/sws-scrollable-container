@@ -6,12 +6,12 @@ import commonjs from '@rollup/plugin-commonjs';
 import html2 from 'rollup-plugin-html2';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 import camelCase from 'lodash.camelcase';
 import upperFirst from 'lodash.upperfirst';
 
-import pkg from './package.json';
+import pkg from './package.json' assert { type: 'json' };
 
 // Remove npm package scope.
 const unscopedName = pkg.name.replace(/^@.*\//, '');
@@ -27,10 +27,7 @@ const plugins = [
   typescript({ include: '**/*.{ts,js}', check: false }),
   commonjs({ extensions: ['.ts', '.js'] }),
 ];
-let pluginsBrowser = [
-  ...plugins,
-  html2({ template: 'src/html/index.html' }),
-];
+let pluginsBrowser = [...plugins, html2({ template: 'src/html/index.html' })];
 
 if (process.env.NODE_ENV === 'development') {
   pluginsBrowser = [
