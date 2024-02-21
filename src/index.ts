@@ -342,26 +342,6 @@ class SwsScrollableContainer extends LitElement {
     return this.elMain.clientWidth < this.elMain.scrollWidth;
   }
 
-  private _canScrollFrom(): boolean {
-    if (!this.elMain) {
-      return false;
-    }
-    if (this.isVertical) {
-      return this.elMain.scrollTop !== 0;
-    }
-    return this.elMain.scrollLeft !== 0;
-  }
-
-  private _canScrollTo(): boolean {
-    if (!this.elMain) {
-      return false;
-    }
-    if (this.isVertical) {
-      return this.elMain.scrollTop + this.elMain.offsetHeight !== this.elMain.scrollHeight;
-    }
-    return this.elMain.scrollLeft + this.elMain.offsetWidth !== this.elMain.scrollWidth;
-  }
-
   private _setShadow(): void {
     if (this.elShadowFrom) {
       this.elShadowFrom.style.setProperty(
