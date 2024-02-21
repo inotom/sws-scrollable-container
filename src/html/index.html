@@ -69,6 +69,10 @@ hr {
 .table th {
   background-color: #fee;
 }
+.table--dark {
+  color: #fff;
+  background-color: #333;
+}
 .table--dark th {
   background-color: #633;
 }
@@ -469,7 +473,7 @@ hr {
 
   </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
 <script type="text/x-template" id="async-block-template">
   <div class="async-block-container">
@@ -501,7 +505,7 @@ hr {
         href="#"
         v-for="(item, index) in pages"
         :key="item.id"
-        :is-selected="selectedIndex === index"
+        :is-selected="selectedIndex === index || null"
         @click.prevent="selectTab(index)"
       >
         TAB{{ index }}
@@ -535,22 +539,21 @@ hr {
 </script>
 
 <script>
-Vue.config.ignoredElements = [
-  'sws-scrollable-container',
-];
 
-Vue.component('async-block', {
+const { createApp, defineComponent } = Vue;
+
+const AsyncBlock = defineComponent({
   template: '#async-block-template',
 
-  data: function() {
+  data() {
     return {
       lines: [],
       showScrollableContainer: true,
     };
   },
 
-  mounted: function() {
-    setTimeout(function() {
+  mounted() {
+    setTimeout(() => {
       this.showScrollableContainer = false;
 
       this.lines = [
@@ -564,11 +567,11 @@ Vue.component('async-block', {
       this.$nextTick(() => {
         this.showScrollableContainer = true;
       });
-    }.bind(this), 1000);
+    }, 1000);
   },
 
   methods: {
-    updateLine:function() {
+    updateLine() {
       this.lines.push('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
       this.showScrollableContainer = false;
@@ -580,10 +583,10 @@ Vue.component('async-block', {
   },
 });
 
-Vue.component('tab-switch', {
+const TabSwitch = defineComponent({
   template: '#tab-switch-template',
 
-  data: function() {
+  data() {
     return {
       isLoading: false,
       selectedIndex: 0,
@@ -604,34 +607,49 @@ Vue.component('tab-switch', {
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
           ],
         },
+        {
+          id: 2,
+          lines: [
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          ],
+        },
       ],
     };
   },
 
   computed: {
-    lines: function() {
+    lines() {
       return this.pages[this.selectedIndex].lines;
     },
   },
 
-  mounted: function() {
+  mounted() {
     this.selectTab(0);
   },
 
   methods: {
-    selectTab: function(index) {
+    selectTab(index) {
       this.isLoading = true;
-      setTimeout(function() {
+      setTimeout(() => {
         this.isLoading = false;
         this.selectedIndex = index;
-      }.bind(this), 500);
+      }, 500);
     },
   },
 });
 
-new Vue({
-  el: '#app'
+const app = createApp({
+  components: {
+    AsyncBlock,
+    TabSwitch,
+  },
 });
+app.config.compilerOptions.isCustomElement = (tag) => tag === 'sws-scrollable-container';
+app.mount('#app');
 </script>
 </body>
 </html>
