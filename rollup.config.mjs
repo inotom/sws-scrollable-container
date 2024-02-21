@@ -27,11 +27,12 @@ const plugins = [
   typescript({ include: '**/*.{ts,js}', check: false }),
   commonjs({ extensions: ['.ts', '.js'] }),
 ];
-let pluginsBrowser = [...plugins, html2({ template: 'src/html/index.html' })];
+let pluginsBrowser = [...plugins];
 
 if (process.env.NODE_ENV === 'development') {
   pluginsBrowser = [
     ...pluginsBrowser,
+    html2({ template: 'src/html/index.html' }),
     serve({
       contentBase: './dist',
       port: 3000,

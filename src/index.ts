@@ -35,6 +35,7 @@ class SwsScrollableContainer extends LitElement {
 
       --sws-scrollable-container-message-font-size: 0.75rem;
       --sws-scrollable-container-message-line-height: 1.25;
+      --sws-scrollable-container-message-white-space: normal;
     }
 
     .scrollable-container {
@@ -76,14 +77,20 @@ class SwsScrollableContainer extends LitElement {
       visibility: hidden;
       opacity: 0;
       transform: scale(0);
-      transition: opacity 0.3s, visibility 0s linear 0.3s, transform 0s linear 0.3s;
+      transition:
+        opacity 0.3s,
+        visibility 0s linear 0.3s,
+        transform 0s linear 0.3s;
     }
 
     .scrollable-container__notify[is-active] {
       visibility: visible;
       opacity: 1;
       transform: scale(1);
-      transition: opacity 0.3s, visibility 0.3s linear 0s, transform 0s linear 0s;
+      transition:
+        opacity 0.3s,
+        visibility 0.3s linear 0s,
+        transform 0s linear 0s;
     }
 
     .scrollable-container__picture {
@@ -118,6 +125,7 @@ class SwsScrollableContainer extends LitElement {
       text-align: center;
       line-height: var(--sws-scrollable-container-message-line-height);
       font-size: var(--sws-scrollable-container-message-font-size);
+      white-space: var(--sws-scrollable-container-message-white-space);
     }
 
     .scrollable-container__shadow {

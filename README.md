@@ -42,6 +42,7 @@ sws-scrollable-container {
   --sws-scrollable-container-icon-scale: 1.5;
   --sws-scrollable-container-message-font-size: 0.75rem;
   --sws-scrollable-container-message-line-height: 1.25;
+  --sws-scrollable-container-message-white-space: normal;
 }
 ```
 
@@ -50,26 +51,27 @@ sws-scrollable-container {
 
 ### sws-scrollable-container
 
-| css custom property name                                   | content                            |  defaults                                                              |
-|:-----------------------------------------------------------|:-----------------------------------|:-----------------------------------------------------------------------|
-| `--sws-scrollable-container-position`                      | Position property                  | `relative`                                                             |
-| `--sws-scrollable-container-shadow-size`                   | Inner shadow size                  | `0.9375rem`                                                                 |
-| `--sws-scrollable-container-shadow-from-x`                 | Left inner shadow offset           | `0`                                                                    |
-| `--sws-scrollable-container-shadow-from-y`                 | Top inner shadow offset            | `0`                                                                    |
-| `--sws-scrollable-container-shadow-to-x`                   | Right inner shadow offset          | `0`                                                                    |
-| `--sws-scrollable-container-shadow-to-y`                   | Bottom inner shadow offset         | `0`                                                                    |
-| `--sws-scrollable-container-notification-top`              | Notification box top position      | `3.125rem`                                                             |
-| `--sws-scrollable-container-notification-left`             | Notification box left position     | `calc((100% - var(--sws-scrollable-container-notification-size)) / 2)` |
-| `--sws-scrollable-container-notification-size`             | Notification box width/height size | `6.25rem`                                                              |
-| `--sws-scrollable-container-notification-padding`          | Notification box padding           | `0.75rem`                                                              |
-| `--sws-scrollable-container-notification-gap`              | Notification box flexbox gap size  | `0.5rem`                                                               |
-| `--sws-scrollable-container-notification-color`            | Notification box text color        | `#fff`                                                                 |
-| `--sws-scrollable-container-notification-background-color` | Notification box background color  | `rgba(0, 0, 0, 0.5)`                                                   |
-| `--sws-scrollable-container-notification-backdrop-filter`  | Notification box backdrop filter   | `blur(0.187rem)`                                                       |
-| `--sws-scrollable-container-notification-box-shadow`       | Notification box shadow            | `0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.2)`                         |
-| `--sws-scrollable-container-icon-scale`                    | Notification icon transform scale  | `1.5`                                                                  |
-| `--sws-scrollable-container-message-font-size`             | Notification message font size     | `0.75rem`                                                              |
-| `--sws-scrollable-container-message-line-height`           | Notification message line height   | `1.25`                                                                 |
+| css custom property name                                   | content                               |  defaults                                                              |
+|:-----------------------------------------------------------|:--------------------------------------|:-----------------------------------------------------------------------|
+| `--sws-scrollable-container-position`                      | Position property                     | `relative`                                                             |
+| `--sws-scrollable-container-shadow-size`                   | Inner shadow size                     | `0.9375rem`                                                            |
+| `--sws-scrollable-container-shadow-from-x`                 | Left inner shadow offset              | `0`                                                                    |
+| `--sws-scrollable-container-shadow-from-y`                 | Top inner shadow offset               | `0`                                                                    |
+| `--sws-scrollable-container-shadow-to-x`                   | Right inner shadow offset             | `0`                                                                    |
+| `--sws-scrollable-container-shadow-to-y`                   | Bottom inner shadow offset            | `0`                                                                    |
+| `--sws-scrollable-container-notification-top`              | Notification box top position         | `3.125rem`                                                             |
+| `--sws-scrollable-container-notification-left`             | Notification box left position        | `calc((100% - var(--sws-scrollable-container-notification-size)) / 2)` |
+| `--sws-scrollable-container-notification-size`             | Notification box width/height size    | `6.25rem`                                                              |
+| `--sws-scrollable-container-notification-padding`          | Notification box padding              | `0.75rem`                                                              |
+| `--sws-scrollable-container-notification-gap`              | Notification box flexbox gap size     | `0.5rem`                                                               |
+| `--sws-scrollable-container-notification-color`            | Notification box text color           | `#fff`                                                                 |
+| `--sws-scrollable-container-notification-background-color` | Notification box background color     | `rgba(0, 0, 0, 0.5)`                                                   |
+| `--sws-scrollable-container-notification-backdrop-filter`  | Notification box backdrop filter      | `blur(0.187rem)`                                                       |
+| `--sws-scrollable-container-notification-box-shadow`       | Notification box shadow               | `0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.2)`                         |
+| `--sws-scrollable-container-icon-scale`                    | Notification icon transform scale     | `1.5`                                                                  |
+| `--sws-scrollable-container-message-font-size`             | Notification message font size        | `0.75rem`                                                              |
+| `--sws-scrollable-container-message-line-height`           | Notification message line height      | `1.25`                                                                 |
+| `--sws-scrollable-container-message-white-space`           | Notification message line white-space | `normal`                                                               |
 
 
 ## Options
