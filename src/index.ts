@@ -16,6 +16,7 @@ class SwsScrollableContainer extends LitElement {
       --sws-scrollable-container-shadow-from-y: 0;
       --sws-scrollable-container-shadow-to-x: 0;
       --sws-scrollable-container-shadow-to-y: 0;
+      --sws-scrollable-container-overscroll-behavior: auto;
 
       --sws-scrollable-container-notification-top: 3.125rem;
       --sws-scrollable-container-notification-left: calc(
@@ -46,6 +47,7 @@ class SwsScrollableContainer extends LitElement {
     .scrollable-container__main {
       box-sizing: border-box;
       position: relative;
+      overscroll-behavior: var(--sws-scrollable-container-overscroll-behavior);
     }
 
     .scrollable-container__main[is-horizontal][is-scrollable] {
