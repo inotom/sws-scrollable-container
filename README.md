@@ -60,7 +60,7 @@ sws-scrollable-container {
 | `--sws-scrollable-container-shadow-from-y`                 | Top inner shadow offset               | `0`                                                                    |
 | `--sws-scrollable-container-shadow-to-x`                   | Right inner shadow offset             | `0`                                                                    |
 | `--sws-scrollable-container-shadow-to-y`                   | Bottom inner shadow offset            | `0`                                                                    |
-| `--sws-scrollable-container-overscroll-behavior`           | Main box Overscroll-behavior          | `auto`                                                                 |
+| `--sws-scrollable-container-overscroll-behavior`           | Main box overscroll-behavior          | `auto`                                                                 |
 | `--sws-scrollable-container-notification-top`              | Notification box top position         | `3.125rem`                                                             |
 | `--sws-scrollable-container-notification-left`             | Notification box left position        | `calc((100% - var(--sws-scrollable-container-notification-size)) / 2)` |
 | `--sws-scrollable-container-notification-size`             | Notification box width/height size    | `6.25rem`                                                              |
