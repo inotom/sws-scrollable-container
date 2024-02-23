@@ -16,6 +16,7 @@ class SwsScrollableContainer extends LitElement {
       --sws-scrollable-container-shadow-from-y: 0;
       --sws-scrollable-container-shadow-to-x: 0;
       --sws-scrollable-container-shadow-to-y: 0;
+      --sws-scrollable-container-overscroll-behavior: auto;
 
       --sws-scrollable-container-notification-top: 3.125rem;
       --sws-scrollable-container-notification-left: calc(
@@ -35,6 +36,7 @@ class SwsScrollableContainer extends LitElement {
 
       --sws-scrollable-container-message-font-size: 0.75rem;
       --sws-scrollable-container-message-line-height: 1.25;
+      --sws-scrollable-container-message-white-space: normal;
     }
 
     .scrollable-container {
@@ -45,6 +47,7 @@ class SwsScrollableContainer extends LitElement {
     .scrollable-container__main {
       box-sizing: border-box;
       position: relative;
+      overscroll-behavior: var(--sws-scrollable-container-overscroll-behavior);
     }
 
     .scrollable-container__main[is-horizontal][is-scrollable] {
@@ -76,14 +79,20 @@ class SwsScrollableContainer extends LitElement {
       visibility: hidden;
       opacity: 0;
       transform: scale(0);
-      transition: opacity 0.3s, visibility 0s linear 0.3s, transform 0s linear 0.3s;
+      transition:
+        opacity 0.3s,
+        visibility 0s linear 0.3s,
+        transform 0s linear 0.3s;
     }
 
     .scrollable-container__notify[is-active] {
       visibility: visible;
       opacity: 1;
       transform: scale(1);
-      transition: opacity 0.3s, visibility 0.3s linear 0s, transform 0s linear 0s;
+      transition:
+        opacity 0.3s,
+        visibility 0.3s linear 0s,
+        transform 0s linear 0s;
     }
 
     .scrollable-container__picture {
@@ -118,6 +127,7 @@ class SwsScrollableContainer extends LitElement {
       text-align: center;
       line-height: var(--sws-scrollable-container-message-line-height);
       font-size: var(--sws-scrollable-container-message-font-size);
+      white-space: var(--sws-scrollable-container-message-white-space);
     }
 
     .scrollable-container__shadow {
@@ -239,7 +249,7 @@ class SwsScrollableContainer extends LitElement {
   private elMain: HTMLDivElement | null | undefined;
   private elShadowFrom: HTMLDivElement | null | undefined;
   private elShadowTo: HTMLDivElement | null | undefined;
-  private handleResize;
+  private handleResize: throttle<() => void>;
   private currentScreenWidth = window.innerWidth;
 
   constructor() {
@@ -334,26 +344,6 @@ class SwsScrollableContainer extends LitElement {
     return this.elMain.clientWidth < this.elMain.scrollWidth;
   }
 
-  private _canScrollFrom(): boolean {
-    if (!this.elMain) {
-      return false;
-    }
-    if (this.isVertical) {
-      return this.elMain.scrollTop !== 0;
-    }
-    return this.elMain.scrollLeft !== 0;
-  }
-
-  private _canScrollTo(): boolean {
-    if (!this.elMain) {
-      return false;
-    }
-    if (this.isVertical) {
-      return this.elMain.scrollTop + this.elMain.offsetHeight !== this.elMain.scrollHeight;
-    }
-    return this.elMain.scrollLeft + this.elMain.offsetWidth !== this.elMain.scrollWidth;
-  }
-
   private _setShadow(): void {
     if (this.elShadowFrom) {
       this.elShadowFrom.style.setProperty(
@@ -375,6 +365,9 @@ class SwsScrollableContainer extends LitElement {
     }
     const size = this.isVertical ? this.elShadowFrom.clientHeight : this.elShadowFrom.clientWidth;
     const pos = this.isVertical ? this.elMain.scrollTop : this.elMain.scrollLeft;
+    if (pos < 0) {
+      return 0;
+    }
     if (pos < size) {
       return pos / size;
     }
@@ -388,6 +381,9 @@ class SwsScrollableContainer extends LitElement {
     if (this.isVertical) {
       const size = this.elShadowTo.clientHeight;
       const pos = this.elMain.scrollTop + this.elMain.offsetHeight;
+      if (pos > this.elMain.scrollHeight) {
+        return 0;
+      }
       if (pos > this.elMain.scrollHeight - size) {
         return (this.elMain.scrollHeight - pos) / size;
       }
@@ -395,6 +391,9 @@ class SwsScrollableContainer extends LitElement {
     } else {
       const size = this.elShadowTo.clientWidth;
       const pos = this.elMain.scrollLeft + this.elMain.offsetWidth;
+      if (pos > this.elMain.scrollWidth) {
+        return 0;
+      }
       if (pos > this.elMain.scrollWidth - size) {
         return (this.elMain.scrollWidth - pos) / size;
       }
@@ -402,7 +401,7 @@ class SwsScrollableContainer extends LitElement {
     }
   }
 
-  private _onScroll(e: MouseEvent): void {
+  private _onScroll(_e: MouseEvent): void {
     this._setShadow();
     this.notificationEnabled = false;
   }
