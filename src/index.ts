@@ -73,6 +73,7 @@ class SwsScrollableContainer extends LitElement {
       padding: var(--sws-scrollable-container-notification-padding);
       color: var(--sws-scrollable-container-notification-color);
       background-color: var(--sws-scrollable-container-notification-background-color);
+      -webkit-backdrop-filter: var(--sws-scrollable-container-notification-backdrop-filter);
       backdrop-filter: var(--sws-scrollable-container-notification-backdrop-filter);
       border-radius: var(--sws-scrollable-container-notification-border-radius);
       box-shadow: var(--sws-scrollable-container-notification-box-shadow);
