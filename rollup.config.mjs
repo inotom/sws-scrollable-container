@@ -11,7 +11,7 @@ import terser from '@rollup/plugin-terser';
 import camelCase from 'lodash.camelcase';
 import upperFirst from 'lodash.upperfirst';
 
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 // Remove npm package scope.
 const unscopedName = pkg.name.replace(/^@.*\//, '');
