@@ -17,6 +17,11 @@ class SwsScrollableContainer extends LitElement {
       --sws-scrollable-container-shadow-to-x: 0;
       --sws-scrollable-container-shadow-to-y: 0;
       --sws-scrollable-container-overscroll-behavior: auto;
+      --sws-scrollable-container-scrollbar-thumb-color: initial;
+      --sws-scrollable-container-scrollbar-track-color: initial;
+      --sws-scrollable-container-scrollbar-track-margin: initial;
+      --sws-scrollable-container-scrollbar-width: initial;
+      --sws-scrollable-container-scrollbar-border-radius: initial;
 
       --sws-scrollable-container-notification-top: 3.125rem;
       --sws-scrollable-container-notification-left: calc(
@@ -50,12 +55,47 @@ class SwsScrollableContainer extends LitElement {
       overscroll-behavior: var(--sws-scrollable-container-overscroll-behavior);
     }
 
+    .scrollable-container__main[is-custom-scrollbar] {
+      scrollbar-color: var(--sws-scrollable-container-scrollbar-thumb-color)
+        var(--sws-scrollable-container-scrollbar-track-color);
+    }
+
     .scrollable-container__main[is-horizontal][is-scrollable] {
       overflow-x: scroll;
     }
 
     .scrollable-container__main[is-vertical][is-scrollable] {
       overflow-y: scroll;
+    }
+
+    .scrollable-container__main[is-horizontal][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar {
+      height: var(--sws-scrollable-container-scrollbar-width);
+    }
+
+    .scrollable-container__main[is-horizontal][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar-track {
+      margin: var(--sws-scrollable-container-scrollbar-track-margin);
+      background: var(--sws-scrollable-container-scrollbar-track-color);
+      border-radius: var(--sws-scrollable-container-scrollbar-border-radius);
+    }
+
+    .scrollable-container__main[is-horizontal][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar-thumb {
+      background: var(--sws-scrollable-container-scrollbar-thumb-color);
+      border-radius: var(--sws-scrollable-container-scrollbar-border-radius);
+    }
+
+    .scrollable-container__main[is-vertical][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar {
+      width: var(--sws-scrollable-container-scrollbar-width);
+    }
+
+    .scrollable-container__main[is-vertical][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar-track {
+      margin: var(--sws-scrollable-container-scrollbar-track-margin);
+      background: var(--sws-scrollable-container-scrollbar-track-color);
+      border-radius: var(--sws-scrollable-container-scrollbar-border-radius);
+    }
+
+    .scrollable-container__main[is-vertical][is-scrollable][is-webkit-custom-scrollbar]::-webkit-scrollbar-thumb {
+      background: var(--sws-scrollable-container-scrollbar-thumb-color);
+      border-radius: var(--sws-scrollable-container-scrollbar-border-radius);
     }
 
     .scrollable-container__notify {
@@ -244,6 +284,12 @@ class SwsScrollableContainer extends LitElement {
   @property({ type: Boolean, attribute: false })
   isScrollable = false;
 
+  @property({ type: Boolean, attribute: 'is-custom-scrollbar' })
+  isCustomScrollbar = false;
+
+  @property({ type: Boolean, attribute: 'is-webkit-custom-scrollbar' })
+  isWebkitCustomScrollbar = false;
+
   @property({ type: Boolean, attribute: false })
   notificationEnabled = false;
 
@@ -276,6 +322,8 @@ class SwsScrollableContainer extends LitElement {
           ?is-vertical="${this.isVertical}"
           ?is-horizontal="${!this.isVertical}"
           ?is-scrollable="${this.isScrollable}"
+          ?is-custom-scrollbar="${this.isCustomScrollbar}"
+          ?is-webkit-custom-scrollbar="${this.isWebkitCustomScrollbar}"
           class="scrollable-container__main"
           @scroll="${throttle(150, this._onScroll)}"
         >

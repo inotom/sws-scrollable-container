@@ -2,7 +2,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<script src="https://polyfill.io/v3/polyfill.min.js"></script>
 <title>@inotom/sws-scrollable-container demo</title>
 <style>
 body {
@@ -100,11 +99,46 @@ hr {
 .vertical-scroll-container {
   max-height: 200px;
 }
+
 .vertical-scroll-container p:first-of-type {
   margin-top: 0;
 }
+
 .vertical-scroll-container p:last-of-type {
   margin-bottom: 0;
+}
+
+.horizontal-custom-scrollbar-container {
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.horizontal-custom-scrollbar-container sws-scrollable-container {
+  --sws-scrollable-container-scrollbar-thumb-color: #99f;
+  --sws-scrollable-container-scrollbar-track-color: #ccc;
+  --sws-scrollable-container-scrollbar-track-margin: 0 2px;
+  --sws-scrollable-container-scrollbar-width: 10px;
+  --sws-scrollable-container-scrollbar-border-radius: 100vmax;
+}
+
+.vertical-custom-scrollbar-container p:first-of-type {
+  margin-top: 0;
+}
+
+.vertical-custom-scrollbar-container p:last-of-type {
+  margin-bottom: 0;
+}
+
+.vertical-custom-scrollbar-container__inner {
+  max-height: 200px;
+}
+
+.vertical-custom-scrollbar-container sws-scrollable-container {
+  --sws-scrollable-container-scrollbar-thumb-color: #f99;
+  --sws-scrollable-container-scrollbar-track-color: #ccc;
+  --sws-scrollable-container-scrollbar-track-margin: 2px 0;
+  --sws-scrollable-container-scrollbar-width: 10px;
+  --sws-scrollable-container-scrollbar-border-radius: 100vmax;
 }
 
 .overscroll-behavior-contain-container sws-scrollable-container {
@@ -207,6 +241,179 @@ hr {
         </p>
       </div>
     </sws-scrollable-container>
+
+    <hr>
+
+    <h2>custom scrollbar</h2>
+
+    <p><code>&lt;sws-scrollable-container is-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="horizontal-custom-scrollbar-container">
+      <sws-scrollable-container is-custom-scrollbar="true">
+        <table class="table table--normal">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <p><code>&lt;sws-scrollable-container is-vertical=&quot;true&quot; is-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="vertical-custom-scrollbar-container">
+      <sws-scrollable-container is-vertical="true" is-custom-scrollbar="true">
+        <div class="vertical-custom-scrollbar-container__inner">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <p><code>&lt;sws-scrollable-container is-webkit-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="horizontal-custom-scrollbar-container">
+      <sws-scrollable-container is-webkit-custom-scrollbar="true">
+        <table class="table table--normal">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <p><code>&lt;sws-scrollable-container is-vertical=&quot;true&quot; is-webkit-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="vertical-custom-scrollbar-container">
+      <sws-scrollable-container is-vertical="true" is-webkit-custom-scrollbar="true">
+        <div class="vertical-custom-scrollbar-container__inner">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <p><code>&lt;sws-scrollable-container is-custom-scrollbar=&quot;true&quot; is-webkit-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="horizontal-custom-scrollbar-container">
+      <sws-scrollable-container is-custom-scrollbar="true" is-webkit-custom-scrollbar="true">
+        <table class="table table--normal">
+          <tbody>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+            <tr>
+              <th>label</th>
+              <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sws-scrollable-container>
+    </div>
+
+    <br>
+
+    <p><code>&lt;sws-scrollable-container is-vertical=&quot;true&quot; is-custom-scrollbar=&quot;true&quot; is-webkit-custom-scrollbar=&quot;true&quot;&gt;</code></p>
+
+    <div class="vertical-custom-scrollbar-container">
+      <sws-scrollable-container is-vertical="true" is-custom-scrollbar="true" is-webkit-custom-scrollbar="true">
+        <div class="vertical-custom-scrollbar-container__inner">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </sws-scrollable-container>
+    </div>
 
     <hr>
 

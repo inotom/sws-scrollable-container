@@ -30,6 +30,11 @@ sws-scrollable-container {
   --sws-scrollable-container-shadow-to-x: 0;
   --sws-scrollable-container-shadow-to-y: 0;
   --sws-scrollable-container-overscroll-behavior: auto;
+  --sws-scrollable-container-scrollbar-thumb-color: initial;
+  --sws-scrollable-container-scrollbar-track-color: initial;
+  --sws-scrollable-container-scrollbar-track-margin: initial;
+  --sws-scrollable-container-scrollbar-width: initial;
+  --sws-scrollable-container-scrollbar-border-radius: initial;
   --sws-scrollable-container-notification-top: 3.125rem;
   --sws-scrollable-container-notification-left: calc((100% - var(--sws-scrollable-container-notification-size)) / 2);
   --sws-scrollable-container-notification-size: 6.25rem;
@@ -61,6 +66,11 @@ sws-scrollable-container {
 | `--sws-scrollable-container-shadow-to-x`                   | Right inner shadow offset             | `0`                                                                    |
 | `--sws-scrollable-container-shadow-to-y`                   | Bottom inner shadow offset            | `0`                                                                    |
 | `--sws-scrollable-container-overscroll-behavior`           | Main box overscroll-behavior          | `auto`                                                                 |
+| `--sws-scrollable-container-scrollbar-thumb-color`         | Scrollbar handle color                | `initial`                                                              |
+| `--sws-scrollable-container-scrollbar-track-color`         | Scrollbar track background color      | `initial`                                                              |
+| `--sws-scrollable-container-scrollbar-track-margin`        | Scrollbar track margin                | `initial`                                                              |
+| `--sws-scrollable-container-scrollbar-width`               | Scrollbar width                       | `initial`                                                              |
+| `--sws-scrollable-container-scrollbar-border-radius`       | Scrollbar border radius               | `initial`                                                              |
 | `--sws-scrollable-container-notification-top`              | Notification box top position         | `3.125rem`                                                             |
 | `--sws-scrollable-container-notification-left`             | Notification box left position        | `calc((100% - var(--sws-scrollable-container-notification-size)) / 2)` |
 | `--sws-scrollable-container-notification-size`             | Notification box width/height size    | `6.25rem`                                                              |
@@ -82,6 +92,8 @@ sws-scrollable-container {
 <sws-scrollable-container
   label="scrollable"
   is-vertical="false"
+  is-custom-scrollbar="false"
+  is-webkit-custom-scrollbar="false"
   is-hide-notification="false"
 >
   ... inner content ...
@@ -90,11 +102,13 @@ sws-scrollable-container {
 
 ### sws-scrollable-container
 
-| option name            | content                              | defaults     |
-|:-----------------------|:-------------------------------------|:-------------|
-| `label`                | Notification label text.             | `scrollable` |
-| `is-vertical`          | Scroll direction.                    | `false`      |
-| `is-hide-notification` | Disable notification (only shadow).  | `false`      |
+| option name                   | content                              | defaults     |
+|:------------------------------|:-------------------------------------|:-------------|
+| `label`                       | Notification label text.             | `scrollable` |
+| `is-vertical`                 | Scroll direction.                    | `false`      |
+| `is-hide-notification`        | Disable notification (only shadow).  | `false`      |
+| `is-custom-scrollbar`         | Enable scrollbar-color style.        | `false`      |
+| `is-webkit-custom-scrollbar`  | Enable webkit scrollbar style.       | `false`      |
 
 
 ## License
