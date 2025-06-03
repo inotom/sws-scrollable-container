@@ -16,7 +16,7 @@ Place `sws-scrollable-container` custom elements around the content.
 <sws-scrollable-container>
   ... inner content ...
 </sws-scrollable-container>
-<script type="module" src="sws-scrollable-container.min.js" defer></script>
+<script type="module" src="sws-scrollable-container.umd.js"></script>
 ```
 
 Set element's style by css custom properties.

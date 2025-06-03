@@ -1,28 +1,29 @@
 {
   "name": "@inotom/sws-scrollable-container",
-  "version": "1.2.2",
+  "private": false,
+  "version": "2.0.0",
   "description": "A web Components to show scrollable hint.",
-  "main": "dist/index.cjs.js",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "type": "module",
+  "main": "dist/sws-scrollable-container.umd.js",
   "module": "dist/index.esm.js",
-  "unpkg": "dist/sws-scrollable-container.js",
+  "types": "types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
-  "types": "dist/index.d.ts",
-  "keywords": [],
-  "author": "inotom (https://www.serendip.ws/)",
-  "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development rollup -c -w",
-    "prebuild": "rimraf dist && npm run clean && npm run types",
-    "build": "NODE_ENV=production rollup -c",
-    "clean": "rimraf '**/.DS_Store'",
-    "prepublishOnly": "npm run build",
-    "release": "npm publish",
-    "types": "tsc --emitDeclarationOnly",
-    "lint": "eslint --ext .ts src",
-    "prettier": "prettier --write src/**/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run dev",
+    "dev": "vite",
+    "prebuild": "npm run clean & npm test",
+    "build": "tsc && vite build",
+    "clean": "rimraf '**/.DS_Store' & rimraf 'dist'",
+    "lint:ts": "eslint --ext .ts src",
+    "serve": "tsc && vite preview",
+    "test": "npm run lint:ts"
   },
   "repository": {
     "type": "git",
@@ -35,32 +36,24 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [],
+  "author": "inotom (https://www.serendip.ws/)",
+  "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-buble": "1.0.3",
-    "@rollup/plugin-commonjs": "25.0.7",
-    "@rollup/plugin-node-resolve": "15.2.3",
-    "@rollup/plugin-terser": "0.4.4",
-    "@types/node": "20.11.19",
+    "@types/node": "22.15.29",
     "@types/throttle-debounce": "5.0.2",
-    "@typescript-eslint/eslint-plugin": "7.0.2",
-    "@typescript-eslint/parser": "7.0.2",
-    "eslint": "8.56.0",
-    "eslint-config-prettier": "9.1.0",
-    "lodash.camelcase": "4.3.0",
-    "lodash.upperfirst": "4.3.1",
-    "prettier": "3.2.5",
-    "rimraf": "5.0.5",
-    "rollup": "4.12.0",
-    "rollup-plugin-html2": "4.0.0",
-    "rollup-plugin-livereload": "2.0.5",
-    "rollup-plugin-serve": "1.1.1",
-    "rollup-plugin-typescript2": "0.36.0",
-    "typescript": "5.3.3",
-    "typescript-lit-html-plugin": "0.9.0"
+    "@typescript-eslint/eslint-plugin": "8.33.1",
+    "@typescript-eslint/parser": "8.33.1",
+    "eslint": "9.28.0",
+    "eslint-config-prettier": "10.1.5",
+    "prettier": "3.5.3",
+    "rimraf": "6.0.1",
+    "typescript": "5.8.3",
+    "vite": "6.3.5",
+    "vite-plugin-banner": "0.8.1"
   },
   "dependencies": {
-    "lit": "3.1.2",
-    "throttle-debounce": "5.0.0",
-    "tslib": "2.6.2"
+    "lit": "3.3.0",
+    "throttle-debounce": "5.0.2"
   }
 }
