@@ -1,8 +1,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@inotom/sws-scrollable-container demo</title>
+<script type="module" src="/src/index.ts"></script>
 <style>
 body {
   font-size: .75rem;
@@ -184,7 +185,43 @@ hr {
 .tab-content {
   max-height: 200px;
 }
+
+.dialog {
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  padding: 20px;
+  border: 0 none;
+  box-shadow: 2px 2px 2px rgb(0 0 0 / 10%);
+  transition-duration: 300ms;
+  transition-property: display, overlay, opacity;
+  transition-timing-function: ease-in-out;
+  transition-behavior: allow-discrete;
+
+  &::backdrop {
+    background-color: oklch(from black l c h / 0.5);
+    backdrop-filter: blur(5px);
+    transition-duration: inherit;
+    transition-property: opacity;
+    transition-timing-function: inherit;
+    transition-behavior: inherit;
+  }
+
+  &:modal,
+  &:modal::backdrop {
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  &:not(:modal),
+  &:not(:modal)::backdrop {
+    opacity: 0;
+  }
+}
 </style>
+<script type="module" src="https://unpkg.com/invokers-polyfill@latest/invoker.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/dialog-closedby-polyfill@latest/index.min.js"></script>
 </head>
 <body>
 
@@ -740,6 +777,26 @@ hr {
       <tab-switch></tab-switch>
     </div>
 
+    <h2>dialog</h2>
+
+    <p>
+      <button commandfor="dialog-1" command="show-modal">Open</button>
+    </p>
+
+    <dialog class="dialog" id="dialog-1" closedby="any">
+      <sws-scrollable-container>
+        <p style="width:1200px;">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </sws-scrollable-container>
+      <p>
+        <button commandfor="dialog-1" command="close">Close</button>
+      </p>
+    </dialog>
+
     <hr>
 
   </div>
@@ -810,7 +867,6 @@ hr {
 </script>
 
 <script>
-
 const { createApp, defineComponent } = Vue;
 
 const AsyncBlock = defineComponent({
@@ -921,6 +977,33 @@ const app = createApp({
 });
 app.config.compilerOptions.isCustomElement = (tag) => tag === 'sws-scrollable-container';
 app.mount('#app');
+</script>
+
+<script type="module">
+  const isSafari = () =>  typeof navigator !== 'undefined' && /Version\/[\d\.]+.*Safari/.test(navigator.userAgent);
+  Array.from(document.querySelectorAll('dialog'), (elDialog) => {
+    const elSwsScrollableContainer = elDialog.querySelector('sws-scrollable-container');
+    if (elSwsScrollableContainer) {
+      if (isSafari()) {
+        const config = { attributes: true, childList: false, subtree: false };
+        const callback = (mutationList, observer) => {
+          for (const mutation of mutationList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'open' && elDialog.open) {
+                elSwsScrollableContainer.resizeContainer();
+            }
+          }
+        };
+        const observer = new MutationObserver(callback);
+        observer.observe(elDialog, config);
+      } else {
+        elDialog.addEventListener('toggle', () => {
+          if (elDialog.open) {
+            elSwsScrollableContainer.resizeContainer();
+          }
+        });
+      }
+    }
+  });
 </script>
 </body>
 </html>

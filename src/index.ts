@@ -272,26 +272,33 @@ class SwsScrollableContainer extends LitElement {
     }
   `;
 
+  // prettier-ignore
   @property({ type: String, attribute: 'label' })
-  label = DEFAULT_LABEL_TEXT;
+    label = DEFAULT_LABEL_TEXT;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: 'is-vertical' })
-  isVertical = false;
+    isVertical = false;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: 'is-hide-notification' })
-  isHideNotification = false;
+    isHideNotification = false;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: false })
-  isScrollable = false;
+    isScrollable = false;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: 'is-custom-scrollbar' })
-  isCustomScrollbar = false;
+    isCustomScrollbar = false;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: 'is-webkit-custom-scrollbar' })
-  isWebkitCustomScrollbar = false;
+    isWebkitCustomScrollbar = false;
 
+  // prettier-ignore
   @property({ type: Boolean, attribute: false })
-  notificationEnabled = false;
+    notificationEnabled = false;
 
   private elMain: HTMLDivElement | null | undefined;
   private elShadowFrom: HTMLDivElement | null | undefined;
@@ -301,6 +308,7 @@ class SwsScrollableContainer extends LitElement {
 
   constructor() {
     super();
+
     this.handleResize = throttle(150, () => {
       if (this.currentScreenWidth === window.innerWidth) {
         return;
@@ -308,6 +316,11 @@ class SwsScrollableContainer extends LitElement {
       this._initialize();
       this.currentScreenWidth = window.innerWidth;
     });
+  }
+
+  resizeContainer() {
+    this._initialize();
+    this.currentScreenWidth = window.innerWidth;
   }
 
   disconnectedCallback() {
@@ -461,3 +474,5 @@ declare global {
     'sws-scrollable-container': SwsScrollableContainer;
   }
 }
+
+export { SwsScrollableContainer };
